@@ -91,10 +91,10 @@ public class NumberTriangle {
         NumberTriangle current = this;
         for (char c : path.toCharArray()) {
             if (c == 'l') {
-                current = current.left;;
+                current = current.left;
             }else{
                 if (c == 'r') {
-                    current = current.right;;
+                    current = current.right;
                 }
             }
 
