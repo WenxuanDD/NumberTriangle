@@ -87,7 +87,7 @@ public class NumberTriangle {
      * @return the root value at the location indicated by path
      *
      */
-    public int retrieve(String path) {
+    public int retrieve(String path){
         // TODO implement this method
         return -1;
     }
@@ -107,24 +107,32 @@ public class NumberTriangle {
         // open the file and get a BufferedReader object whose methods
         // are more convenient to work with when reading the file contents.
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
+        if (inputStream == null) {
+            throw new FileNotFoundException("File not found: " + fname);
+        }
+
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
-
-        // TODO define any variables that you want to use to store things
-
-        // will need to return the top of the NumberTriangle,
-        // so might want a variable for that.
         NumberTriangle top = null;
+        NumberTriangle[] previous_row = null;
 
         String line = br.readLine();
         while (line != null) {
+            String[] parts = line.trim().split("\\s+");
+            NumberTriangle[] currentRow = new NumberTriangle[parts.length];
+            for (int i = 0; i < parts.length; i++) {
+                currentRow[i] = new NumberTriangle(Integer.parseInt(parts[i]));
+            }
 
-            // remove when done; this line is included so running starter code prints the contents of the file
-            System.out.println(line);
+            if (top == null) {
+                top = currentRow[0];
+            } else {
+                for (int i = 0; i < previous_row.length; i++) {
+                    previous_row[i].setLeft(currentRow[i]);
+                    previous_row[i].setRight(currentRow[i + 1]);
+                }
+            }
 
-            // TODO process the line
-
-            //read the next line
+            previous_row = currentRow;
             line = br.readLine();
         }
         br.close();
@@ -142,3 +150,5 @@ public class NumberTriangle {
         System.out.println(mt.getRoot());
     }
 }
+
+
