@@ -87,19 +87,9 @@ public class NumberTriangle {
      * @return the root value at the location indicated by path
      *
      */
-    public int retrieve(String path) {
-        NumberTriangle current = this;
-        for (char c : path.toCharArray()) {
-            if (c == 'l') {
-                current = current.left;
-            }else{
-                if (c == 'r') {
-                    current = current.right;
-                }
-            }
-
-        }
-        return current.root;
+    public int retrieve(String path){
+        // TODO implement this method
+        return -1;
     }
 
     /** Read in the NumberTriangle structure from a file.
@@ -117,14 +107,11 @@ public class NumberTriangle {
         // open the file and get a BufferedReader object whose methods
         // are more convenient to work with when reading the file contents.
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         if (inputStream == null) {
             throw new FileNotFoundException("File not found: " + fname);
         }
 
-
-        // will need to return the top of the NumberTriangle,
-        // so might want a variable for that.
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         NumberTriangle top = null;
         NumberTriangle[] previous_row = null;
 
@@ -146,12 +133,6 @@ public class NumberTriangle {
             }
 
             previous_row = currentRow;
-
-            // remove when done; this line is included so running starter code prints the contents of the file
-            System.out.println(line);
-
-
-            //read the next line
             line = br.readLine();
         }
         br.close();
@@ -169,3 +150,5 @@ public class NumberTriangle {
         System.out.println(mt.getRoot());
     }
 }
+
+
