@@ -87,10 +87,19 @@ public class NumberTriangle {
      * @return the root value at the location indicated by path
      *
      */
-    public int retrieve(String path){
-        // TODO implement this method
-        return -1;
+
+    public int retrieve(String path) {
+        NumberTriangle current = this;
+        for (char c : path.toCharArray()) {
+            if (c == 'l') {
+                current = current.left;
+            } else if (c == 'r') {
+                current = current.right;
+            }
+        }
+        return current.root;
     }
+
 
     /** Read in the NumberTriangle structure from a file.
      *
